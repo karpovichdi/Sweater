@@ -1,8 +1,7 @@
 package com.example.demo.dao;
 
-import com.example.demo.models.Message;
+import com.example.demo.models.entities.Message;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
