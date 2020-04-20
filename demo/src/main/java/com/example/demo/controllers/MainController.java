@@ -2,6 +2,8 @@ package com.example.demo.controllers;
 
 import com.example.demo.dao.MessageRepository;
 import com.example.demo.models.entities.Message;
+import com.example.demo.models.entities.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +35,12 @@ public class MainController {
     }
 
     @PostMapping("add")
-    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
-        Message message = new Message(text, tag);
+    public String add(
+            @AuthenticationPrincipal User user,
+            @RequestParam String text,
+            @RequestParam String tag,
+            Map<String, Object> model) {
+        Message message = new Message(text, tag, user);
 
         messageRepo.save(message);
         Iterable<Message> messages = messageRepo.findAll();
