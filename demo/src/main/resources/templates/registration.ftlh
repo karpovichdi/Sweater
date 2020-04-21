@@ -3,6 +3,6 @@
 
 <@common.page>
     Add new user
-    ${message!""}
+    ${message?ifExists}
     <@loginMacros.login "/registration"/>
 </@common.page>
