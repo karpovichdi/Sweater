@@ -1,9 +1,9 @@
-<#import "macroses/commonMacroses.ftlh" as c>
-<#import "macroses/loginMacroses.ftlh" as l>
+<#import "macroses/commonMacroses.ftlh" as commonMacroses>
+<#import "macroses/loginMacroses.ftlh" as loginMacroses>
 
-<@c.page>
+<@commonMacroses.page>
     <div>
-        <@l.logout />
+        <@loginMacroses.logout />
         <span><a href="/user">User list</a></span>
     </div>
     <div>
@@ -35,4 +35,4 @@
     <#else>
         No message
     </#list>
-</@c.page>
+</@commonMacroses.page>
