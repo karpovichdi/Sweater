@@ -1,5 +1,5 @@
 <#import "macroses/commonMacroses.ftlh" as common>
 <@common.page>
-     <div>Hello user</div>
-     <a href="/main">Main page</a>
+     <h5>Hello, guest</h5>
+     <div>Twitter, but a little shittier</div>
 </@common.page>

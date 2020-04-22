@@ -2,7 +2,5 @@
 <#import "macroses/loginMacroses.ftlh" as loginMacros>
 
 <@common.page>
-    Login page
-    <@loginMacros.login "/login" />
-    <a href="/registration">Add new user</a>
+    <@loginMacros.login "/login" false/>
 </@common.page>
