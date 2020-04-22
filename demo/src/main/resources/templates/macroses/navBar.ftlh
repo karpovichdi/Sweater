@@ -1,3 +1,4 @@
+<#import "loginMacroses.ftlh" as loginMacroses>
 <#include "securityMacroses.ftlh">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,6 +22,7 @@
             </#if>
         </ul>
 
-        <div class="navbar-text">${name}</div>
+        <div class="navbar-text mr-3">${name}</div>
+        <@loginMacroses.logout />
     </div>
 </nav>
