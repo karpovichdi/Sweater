@@ -16,6 +16,8 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private String email;
+    private String activationCode;
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -24,10 +26,6 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     public User() {
-    }
-
-    public boolean isAdmin(){
-        return roles.contains(Role.ADMIN);
     }
 
     @Override
@@ -89,6 +87,26 @@ public class User implements UserDetails {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public boolean isAdmin(){
+        return roles.contains(Role.ADMIN);
     }
 
     public void setRoles(Set<Role> roles) {
