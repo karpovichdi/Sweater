@@ -3,10 +3,13 @@ package com.example.demo.service;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.models.entities.User;
 import com.example.demo.models.enums.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -17,13 +20,15 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final MailService mailService;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${base.url}")
     private String baseUrl;
 
-    public UserService(UserRepository userRepository, MailService mailService) {
+    public UserService(UserRepository userRepository, MailService mailService, @Lazy PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.mailService = mailService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -41,6 +46,7 @@ public class UserService implements UserDetailsService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
 
