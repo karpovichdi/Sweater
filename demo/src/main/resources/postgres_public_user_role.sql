@@ -1,1 +1,0 @@
-INSERT INTO public.user_role (user_id, roles) VALUES (28, 'USER');
